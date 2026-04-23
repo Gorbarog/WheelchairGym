@@ -19,6 +19,7 @@
 		BB000000000000000019AAAA /* ExerciseDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000019AAAA /* ExerciseDetailView.swift */; };
 		BB00000000000000001AAAAA /* ActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000001AAAAA /* ActiveWorkoutView.swift */; };
 		BB00000000000000001BAAAA /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000001BAAAA /* TimerView.swift */; };
+		BB00000000000000001DAAAA /* TabBarLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000001DAAAA /* TabBarLayout.swift */; };
 		BB00000000000000001CAAAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA00000000000000001CAAAA /* Assets.xcassets */; };
 		BB000000000000000020AAAA /* WorkoutViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000021AAAA /* WorkoutViewModelTests.swift */; };
 		BB000000000000000021AAAA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA000000000000000022AAAA /* XCTest.framework */; };
@@ -48,6 +49,7 @@
 		AA000000000000000019AAAA /* ExerciseDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseDetailView.swift; sourceTree = "<group>"; };
 		AA00000000000000001AAAAA /* ActiveWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutView.swift; sourceTree = "<group>"; };
 		AA00000000000000001BAAAA /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		AA00000000000000001DAAAA /* TabBarLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarLayout.swift; sourceTree = "<group>"; };
 		AA00000000000000001CAAAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA000000000000000020AAAA /* WheelchairGymTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WheelchairGymTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA000000000000000021AAAA /* WorkoutViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModelTests.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				AA000000000000000019AAAA /* ExerciseDetailView.swift */,
 				AA00000000000000001AAAAA /* ActiveWorkoutView.swift */,
 				AA00000000000000001BAAAA /* TimerView.swift */,
+				AA00000000000000001DAAAA /* TabBarLayout.swift */,
 				AA00000000000000001CAAAA /* Assets.xcassets */,
 			);
 			path = WheelchairGym;
@@ -240,6 +243,7 @@
 				BB000000000000000019AAAA /* ExerciseDetailView.swift in Sources */,
 				BB00000000000000001AAAAA /* ActiveWorkoutView.swift in Sources */,
 				BB00000000000000001BAAAA /* TimerView.swift in Sources */,
+				BB00000000000000001DAAAA /* TabBarLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

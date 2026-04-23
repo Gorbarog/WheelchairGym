@@ -80,10 +80,9 @@ struct ProgramView: View {
                             .padding(.horizontal, 16)
                         }
                         .padding(.top, 8)
-
-                        Spacer().frame(height: 30)
                     }
                     .padding(.top, 8)
+                    .padding(.bottom, TabBarLayout.scrollContentBottomPadding)
                 }
             }
             .navigationTitle("Program")

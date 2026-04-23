@@ -212,9 +212,9 @@ struct ExerciseListView: View {
                             .padding(.top, 60)
                         }
 
-                        Spacer().frame(height: 30)
                     }
                     .padding(.top, 8)
+                    .padding(.bottom, TabBarLayout.scrollContentBottomPadding)
                 }
             }
             .navigationTitle("Övningar")
