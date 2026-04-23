@@ -14,9 +14,11 @@ class WorkoutViewModel {
     var workoutStartTime: Date?
     var persistenceErrorMessage: String?
 
-    private var sessionsKey = "workoutSessions"
+    private let sessionsKey = "workoutSessions"
+    private let nowProvider: () -> Date
 
-    init() {
+    init(nowProvider: @escaping () -> Date = Date.init) {
+        self.nowProvider = nowProvider
         loadSessions()
     }
 
@@ -33,7 +35,7 @@ class WorkoutViewModel {
         currentExerciseIndex = 0
         currentSetNumber = 1
         isWorkoutActive = true
-        workoutStartTime = Date()
+        workoutStartTime = nowProvider()
         return true
     }
 
@@ -84,7 +86,7 @@ class WorkoutViewModel {
         guard var session = activeSession,
               let startTime = workoutStartTime else { return }
 
-        let duration = Int(Date().timeIntervalSince(startTime) / 60)
+        let duration = Int(nowProvider().timeIntervalSince(startTime) / 60)
         session.durationMinutes = max(1, duration)
         sessions.append(session)
         saveSessions()
@@ -136,7 +138,7 @@ class WorkoutViewModel {
 
     var workoutElapsedSeconds: Int {
         guard let startTime = workoutStartTime else { return 0 }
-        return max(0, Int(Date().timeIntervalSince(startTime)))
+        return max(0, Int(nowProvider().timeIntervalSince(startTime)))
     }
 
     // MARK: - Persistence

@@ -12,6 +12,10 @@ class TimerViewModel {
     private var startDate: Date?
     private var pausedElapsed: Int = 0
 
+    deinit {
+        timer?.invalidate()
+    }
+
     var displayTime: String {
         let seconds: Int
         if mode == .countdown {
