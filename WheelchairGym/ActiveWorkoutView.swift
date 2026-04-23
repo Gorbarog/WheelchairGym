@@ -373,7 +373,7 @@ struct WorkoutElapsedTimer: View {
 #Preview {
     let vm = WorkoutViewModel()
     vm.loadProgram(for: .mellannivå)
-    vm.startWorkout()
+    _ = vm.startWorkout()
     return ActiveWorkoutView(workoutViewModel: vm)
         .preferredColorScheme(.dark)
 }

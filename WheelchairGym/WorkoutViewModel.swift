@@ -25,14 +25,16 @@ class WorkoutViewModel {
         currentProgram = WorkoutProgramData.program(for: level)
     }
 
-    func startWorkout() {
-        guard let program = currentProgram else { return }
+    @discardableResult
+    func startWorkout() -> Bool {
+        guard let program = currentProgram else { return false }
         let session = WorkoutSession(program: program)
         activeSession = session
         currentExerciseIndex = 0
         currentSetNumber = 1
         isWorkoutActive = true
         workoutStartTime = Date()
+        return true
     }
 
     func nextSet() {

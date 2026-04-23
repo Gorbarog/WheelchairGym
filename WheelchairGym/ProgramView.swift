@@ -5,6 +5,7 @@ struct ProgramView: View {
     @AppStorage("selectedActivityLevel") var selectedActivityLevel = ""
     @State private var showingActiveWorkout = false
     @State private var showingLevelPicker = false
+    @State private var showStartWorkoutError = false
 
     var currentLevel: ActivityLevel? {
         ActivityLevel(rawValue: selectedActivityLevel)
@@ -53,8 +54,11 @@ struct ProgramView: View {
 
                         // Start workout button
                         Button {
-                            workoutViewModel.startWorkout()
-                            showingActiveWorkout = true
+                            if workoutViewModel.startWorkout() {
+                                showingActiveWorkout = true
+                            } else {
+                                showStartWorkoutError = true
+                            }
                         } label: {
                             HStack {
                                 Image(systemName: "play.fill")
@@ -102,6 +106,11 @@ struct ProgramView: View {
                     selectedActivityLevel = newLevel.rawValue
                     workoutViewModel.loadProgram(for: newLevel)
                 }
+            }
+            .alert("Kunde inte starta träningen", isPresented: $showStartWorkoutError) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text("Välj en träningsnivå och försök igen.")
             }
         }
     }
