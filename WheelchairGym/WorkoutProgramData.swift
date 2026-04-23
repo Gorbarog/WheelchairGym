@@ -1,6 +1,19 @@
 import Foundation
 
 struct WorkoutProgramData {
+    private static let placeholderExercise = Exercise(
+        name: "Saknad övning",
+        muscleGroups: ["Okänd muskelgrupp"],
+        description: "Övningen kunde inte laddas från träningsdatat.",
+        steps: ["Kontrollera att övningsnamnet i WorkoutProgramData matchar ExerciseData."],
+        tips: "Uppdatera övningslistan och försök igen.",
+        equipment: .inget,
+        setsMin: 1,
+        setsMax: 1,
+        repsMin: 1,
+        repsMax: 1,
+        levels: ActivityLevel.allCases
+    )
 
     static func program(for level: ActivityLevel) -> WorkoutProgram {
         switch level {
@@ -18,7 +31,11 @@ struct WorkoutProgramData {
         let sets = ActivityLevel.nybörjare.setsPerExercise
 
         func find(_ name: String) -> Exercise {
-            exercises.first { $0.name == name }!
+            if let exercise = exercises.first(where: { $0.name == name }) {
+                return exercise
+            }
+            assertionFailure("Missing exercise in program data: \(name)")
+            return WorkoutProgramData.placeholderExercise
         }
 
         let workoutExercises: [WorkoutExercise] = [
@@ -76,7 +93,11 @@ struct WorkoutProgramData {
         let sets = ActivityLevel.mellannivå.setsPerExercise
 
         func find(_ name: String) -> Exercise {
-            exercises.first { $0.name == name }!
+            if let exercise = exercises.first(where: { $0.name == name }) {
+                return exercise
+            }
+            assertionFailure("Missing exercise in program data: \(name)")
+            return WorkoutProgramData.placeholderExercise
         }
 
         let workoutExercises: [WorkoutExercise] = [
@@ -152,7 +173,11 @@ struct WorkoutProgramData {
         let sets = ActivityLevel.avancerad.setsPerExercise
 
         func find(_ name: String) -> Exercise {
-            exercises.first { $0.name == name }!
+            if let exercise = exercises.first(where: { $0.name == name }) {
+                return exercise
+            }
+            assertionFailure("Missing exercise in program data: \(name)")
+            return WorkoutProgramData.placeholderExercise
         }
 
         let workoutExercises: [WorkoutExercise] = [

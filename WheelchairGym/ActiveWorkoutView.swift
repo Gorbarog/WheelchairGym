@@ -33,7 +33,7 @@ struct ActiveWorkoutView: View {
                     Spacer()
 
                     // Timer display
-                    WorkoutElapsedTimer()
+                    WorkoutElapsedTimer(workoutViewModel: workoutViewModel)
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 16)
@@ -349,10 +349,12 @@ struct RestTimerCard: View {
 // MARK: - Elapsed Timer
 
 struct WorkoutElapsedTimer: View {
-    @State private var elapsedSeconds = 0
-    @State private var timer: Timer? = nil
+    let workoutViewModel: WorkoutViewModel
+    @State private var tick = 0
 
     var displayTime: String {
+        _ = tick
+        let elapsedSeconds = workoutViewModel.workoutElapsedSeconds
         let minutes = elapsedSeconds / 60
         let seconds = elapsedSeconds % 60
         return String(format: "%02d:%02d", minutes, seconds)
@@ -362,14 +364,8 @@ struct WorkoutElapsedTimer: View {
         Text(displayTime)
             .font(.system(size: 15, weight: .semibold, design: .monospaced))
             .foregroundColor(.blue)
-            .onAppear {
-                timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                    elapsedSeconds += 1
-                }
-            }
-            .onDisappear {
-                timer?.invalidate()
-                timer = nil
+            .onReceive(Timer.publish(every: 1, on: .main, in: .common).autoconnect()) { _ in
+                tick += 1
             }
     }
 }

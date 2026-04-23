@@ -12,6 +12,7 @@ class WorkoutViewModel {
     var currentSetNumber: Int = 1
     var isWorkoutActive: Bool = false
     var workoutStartTime: Date?
+    var persistenceErrorMessage: String?
 
     private var sessionsKey = "workoutSessions"
 
@@ -47,7 +48,9 @@ class WorkoutViewModel {
     }
 
     func nextExercise() {
-        guard let session = activeSession else { return }
+        guard let session = activeSession,
+              currentExerciseIndex >= 0,
+              currentExerciseIndex < session.program.exercises.count else { return }
         var updatedSession = session
         let exerciseId = session.program.exercises[currentExerciseIndex].id
         if !updatedSession.completedExercises.contains(exerciseId) {
@@ -64,7 +67,9 @@ class WorkoutViewModel {
     }
 
     func completeExercise() {
-        guard let session = activeSession else { return }
+        guard let session = activeSession,
+              currentExerciseIndex >= 0,
+              currentExerciseIndex < session.program.exercises.count else { return }
         var updatedSession = session
         let exerciseId = session.program.exercises[currentExerciseIndex].id
         if !updatedSession.completedExercises.contains(exerciseId) {
@@ -127,18 +132,38 @@ class WorkoutViewModel {
         sessions.reduce(0) { $0 + $1.durationMinutes }
     }
 
+    var workoutElapsedSeconds: Int {
+        guard let startTime = workoutStartTime else { return 0 }
+        return max(0, Int(Date().timeIntervalSince(startTime)))
+    }
+
     // MARK: - Persistence
 
     private func saveSessions() {
-        if let encoded = try? JSONEncoder().encode(sessions) {
+        do {
+            let encoded = try JSONEncoder().encode(sessions)
             UserDefaults.standard.set(encoded, forKey: sessionsKey)
+            persistenceErrorMessage = nil
+        } catch {
+            persistenceErrorMessage = "Kunde inte spara träningshistorik."
+            print("WorkoutViewModel saveSessions error: \(error)")
         }
     }
 
     private func loadSessions() {
-        if let data = UserDefaults.standard.data(forKey: sessionsKey),
-           let decoded = try? JSONDecoder().decode([WorkoutSession].self, from: data) {
-            sessions = decoded
+        guard let data = UserDefaults.standard.data(forKey: sessionsKey) else {
+            persistenceErrorMessage = nil
+            return
+        }
+
+        do {
+            sessions = try JSONDecoder().decode([WorkoutSession].self, from: data)
+            persistenceErrorMessage = nil
+        } catch {
+            sessions = []
+            UserDefaults.standard.removeObject(forKey: sessionsKey)
+            persistenceErrorMessage = "Träningshistoriken var skadad och har återställts."
+            print("WorkoutViewModel loadSessions error: \(error)")
         }
     }
 

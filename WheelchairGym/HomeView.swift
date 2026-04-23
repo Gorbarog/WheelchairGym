@@ -5,9 +5,14 @@ struct HomeView: View {
     @State private var workoutViewModel = WorkoutViewModel()
     @State private var timerViewModel = TimerViewModel()
     @State private var selectedTab = 0
+    @State private var toastDismissTask: Task<Void, Never>?
 
     var currentLevel: ActivityLevel? {
         ActivityLevel(rawValue: selectedActivityLevel)
+    }
+
+    var shouldShowPersistenceToast: Bool {
+        workoutViewModel.persistenceErrorMessage != nil
     }
 
     var body: some View {
@@ -35,6 +40,41 @@ struct HomeView: View {
                     .tag(2)
             }
             .tint(.blue)
+
+        }
+        .safeAreaInset(edge: .top) {
+            if let errorMessage = workoutViewModel.persistenceErrorMessage {
+                HStack(spacing: 10) {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                        .foregroundColor(.red.opacity(0.9))
+                    Text(errorMessage)
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.2)) {
+                            workoutViewModel.persistenceErrorMessage = nil
+                        }
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                    }
+                    .buttonStyle(.plain)
+                }
+                .padding(.horizontal, 14)
+                .padding(.vertical, 12)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(red: 0.24, green: 0.10, blue: 0.10))
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .strokeBorder(Color.red.opacity(0.5), lineWidth: 1)
+                        )
+                )
+                .padding(.horizontal, 16)
+                .padding(.top, 6)
+                .transition(.move(edge: .top).combined(with: .opacity))
+            }
         }
         .onAppear {
             if let level = currentLevel {
@@ -47,6 +87,24 @@ struct HomeView: View {
             UITabBar.appearance().standardAppearance = appearance
             UITabBar.appearance().scrollEdgeAppearance = appearance
         }
+        .onChange(of: workoutViewModel.persistenceErrorMessage) { _, newValue in
+            toastDismissTask?.cancel()
+            guard newValue != nil else { return }
+
+            toastDismissTask = Task {
+                try? await Task.sleep(for: .seconds(4))
+                guard !Task.isCancelled else { return }
+                await MainActor.run {
+                    withAnimation(.easeInOut(duration: 0.2)) {
+                        workoutViewModel.persistenceErrorMessage = nil
+                    }
+                }
+            }
+        }
+        .onDisappear {
+            toastDismissTask?.cancel()
+        }
+        .animation(.easeInOut(duration: 0.2), value: shouldShowPersistenceToast)
         .preferredColorScheme(.dark)
     }
 }
