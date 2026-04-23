@@ -20,7 +20,19 @@
 		BB00000000000000001AAAAA /* ActiveWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000001AAAAA /* ActiveWorkoutView.swift */; };
 		BB00000000000000001BAAAA /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00000000000000001BAAAA /* TimerView.swift */; };
 		BB00000000000000001CAAAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA00000000000000001CAAAA /* Assets.xcassets */; };
+		BB000000000000000020AAAA /* WorkoutViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000021AAAA /* WorkoutViewModelTests.swift */; };
+		BB000000000000000021AAAA /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA000000000000000022AAAA /* XCTest.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA000000000000000029AAAA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA000000000000000001AAAA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA000000000000000002AAAA;
+			remoteInfo = WheelchairGym;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AA000000000000000006AAAA /* WheelchairGym.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WheelchairGym.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +49,9 @@
 		AA00000000000000001AAAAA /* ActiveWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveWorkoutView.swift; sourceTree = "<group>"; };
 		AA00000000000000001BAAAA /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		AA00000000000000001CAAAA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA000000000000000020AAAA /* WheelchairGymTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WheelchairGymTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA000000000000000021AAAA /* WorkoutViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModelTests.swift; sourceTree = "<group>"; };
+		AA000000000000000022AAAA /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +62,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA000000000000000025AAAA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB000000000000000021AAAA /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -54,6 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				AA000000000000000004AAAA /* WheelchairGym */,
+				AA000000000000000023AAAA /* WheelchairGymTests */,
+				AA000000000000000024AAAA /* Frameworks */,
 				AA000000000000000005AAAA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,8 +107,25 @@
 			isa = PBXGroup;
 			children = (
 				AA000000000000000006AAAA /* WheelchairGym.app */,
+				AA000000000000000020AAAA /* WheelchairGymTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AA000000000000000023AAAA /* WheelchairGymTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA000000000000000021AAAA /* WorkoutViewModelTests.swift */,
+			);
+			path = WheelchairGymTests;
+			sourceTree = "<group>";
+		};
+		AA000000000000000024AAAA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA000000000000000022AAAA /* XCTest.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -106,6 +148,24 @@
 			productReference = AA000000000000000006AAAA /* WheelchairGym.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AA000000000000000028AAAA /* WheelchairGymTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA00000000000000002BAAAA /* Build configuration list for PBXNativeTarget "WheelchairGymTests" */;
+			buildPhases = (
+				AA000000000000000026AAAA /* Sources */,
+				AA000000000000000025AAAA /* Frameworks */,
+				AA000000000000000027AAAA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA00000000000000002AAAAA /* PBXTargetDependency */,
+			);
+			name = WheelchairGymTests;
+			productName = WheelchairGymTests;
+			productReference = AA000000000000000020AAAA /* WheelchairGymTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -118,6 +178,10 @@
 				TargetAttributes = {
 					AA000000000000000002AAAA = {
 						CreatedOnToolsVersion = 15.0;
+					};
+					AA000000000000000028AAAA = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = AA000000000000000002AAAA;
 					};
 				};
 			};
@@ -136,6 +200,7 @@
 			projectRoot = "";
 			targets = (
 				AA000000000000000002AAAA /* WheelchairGym */,
+				AA000000000000000028AAAA /* WheelchairGymTests */,
 			);
 		};
 /* End PBXProject section */
@@ -146,6 +211,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB00000000000000001CAAAA /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA000000000000000027AAAA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,7 +243,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA000000000000000026AAAA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB000000000000000020AAAA /* WorkoutViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA00000000000000002AAAAA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA000000000000000002AAAA /* WheelchairGym */;
+			targetProxy = AA000000000000000029AAAA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		AA00000000000000000CAAAA /* Debug */ = {
@@ -352,6 +440,54 @@
 			};
 			name = Release;
 		};
+		AA00000000000000002CAAAA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wheelchairgym.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WheelchairGym.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WheelchairGym";
+			};
+			name = Debug;
+		};
+		AA00000000000000002DAAAA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wheelchairgym.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WheelchairGym.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WheelchairGym";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -369,6 +505,15 @@
 			buildConfigurations = (
 				AA00000000000000000EAAAA /* Debug */,
 				AA00000000000000000FAAAA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA00000000000000002BAAAA /* Build configuration list for PBXNativeTarget "WheelchairGymTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA00000000000000002CAAAA /* Debug */,
+				AA00000000000000002DAAAA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
